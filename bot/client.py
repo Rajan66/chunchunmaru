@@ -1,34 +1,10 @@
-import os
-
 import discord
-from dotenv import load_dotenv
 
-from core.intents import intents
+from core.utils import greet
 
-load_dotenv()
+from .main import GUILD, client
 
-TOKEN = os.getenv("DISCORD_TOKEN")
-GUILD = os.getenv("DISCORD_GUILD")
-client = discord.Client(intents=intents)
 dog_members = ["deadxyndrome5763", "x_lord", "y_k03"]
-
-
-def greet(bot):
-    print(f"{bot} has connected to Discord")
-    print(f"{bot} to the rescue")
-
-
-def find_guild(client):
-    for guild in client.guilds:
-        if guild.name == GUILD:
-            break
-
-    if guild:
-        print(f"{client.user} is now rescuing the server: {guild.name}")
-        print(f"{guild.name} has the ID: {guild.id}")
-    else:
-        print(f"{GUILD} not found.")
-    return guild
 
 
 @client.event
@@ -62,13 +38,10 @@ async def on_message(message):
         response = "hi boss"
         await message.channel.send(response)
 
-    if str(message.author) == "x_lord":
-        response = "dhwang khatey chup lol"
+    if str(message.author) == "y_k03":
+        response = "masale gay chup"
         await message.channel.send(response)
 
     if message.content.startswith("h"):
         response = "chunchunmaru"
         await message.channel.send(response)
-
-
-client.run(TOKEN)
